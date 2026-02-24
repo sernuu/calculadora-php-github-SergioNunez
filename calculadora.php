@@ -1,21 +1,27 @@
 <?php
-$op = $_POST['op'];
-$n1 = $_POST['n1'];
-$n2 = $_POST['n2'];
+function calcular($numero1, $numero2, $operacion) {
+    switch ($operacion) {
+        case "suma":
+            return $numero1 + $numero2;
+        case "resta":
+            return $numero1 - $numero2;
+        case "multiplicacion":
+            return $numero1 * $numero2;
+        case "division":
+            if ($numero2 == 0) {
+                return "Error: no se puede dividir entre cero";
+            }
+            return $numero1 / $numero2;
 
-if ($op == "s") {
-    $res = $n1 + $n2;
-} else if ($op == "r") {
-    $res = $n1 - $n2;
-} else if ($op == "m") {
-    $res = $n1 * $n2;
-} else if ($op == "d") {
-    if ($n2 != 0) {
-        $res = $n1 / $n2;
-    } else {
-        $res = "Error";
+        default:
+            return "Error: operación no válida";
     }
 }
+$operacion = $_POST['operacion'];
+$numero1 = $_POST['numero1'];
+$numero2 = $_POST['numero2'];
 
-echo $res;
+$resultado = calcular($numero1, $numero2, $operacion);
+
+echo $resultado;
 ?>
